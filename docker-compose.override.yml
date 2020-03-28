@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  traefik:
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--providers.docker.endpoint=tcp://host.docker.internal:2375"
+      - "--api.insecure=true"
