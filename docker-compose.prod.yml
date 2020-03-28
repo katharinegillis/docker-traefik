@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  traefik:
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedByDefault=false"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+      - "--providers.docker.endpoint=tcp://traefik-docker-proxy:2375"
+      - "--certificatesResolvers.myresolver.acme.email=${LETSENCRYPT_EMAIL}"
+      - "--certificatesResolvers.myresolver.acme.storage=acme.json"
+      - "--certificatesResolvers.myresolver.acme.httpChallenge.entryPoint=web"
+    networks:
+      - default
+      - traefik-docker-proxy
+
+networks:
+  traefik-docker-proxy:
+    external: true
