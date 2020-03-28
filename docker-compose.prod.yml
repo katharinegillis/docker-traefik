@@ -11,6 +11,8 @@ services:
       - "--certificatesResolvers.myresolver.acme.email=${LETSENCRYPT_EMAIL}"
       - "--certificatesResolvers.myresolver.acme.storage=acme.json"
       - "--certificatesResolvers.myresolver.acme.httpChallenge.entryPoint=web"
+    volumes:
+      - ./acme.json:/acme.json
     networks:
       - default
       - traefik-docker-proxy
