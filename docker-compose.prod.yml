@@ -16,6 +16,7 @@ services:
       - "443:443"
     volumes:
       - ./acme.json:/acme.json
+    restart: always
     networks:
       - default
       - traefik-docker-proxy
